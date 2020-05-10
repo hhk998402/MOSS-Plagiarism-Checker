@@ -1,0 +1,69 @@
+Deleting the following folders from Machine_Learning_Git_Submissions
+Vibhavari , Gautam MG , Rohit P N , Chethan Ramesh , Harshubh Meherishi , Shwetha.T , nayan deep , Khan Saba Khanum Akbar , Tanisha Sabherwal , Sachin RS , Vivek S Patil  , Adarsh Biradar , Nimish Bongale , Ahmed Uddin Khalid Syed  , Fawaz hussain , Soumil Diwan , R Anurag Pillai , Akhila N , Neralakatte Prajwal Pai , Ritesh Saini , D SAI VISWA SUMANTH , Anmol Kapoor , Varshini S , Manasa Priya , Meghana R Bhat , Sarvottamkumar , Aishwarya N , Deeksha K P , Kushan Singh , Tilak Singh , Sumant Katti , Pooja Lokesh , Umer Faruk , Mahima M A , Chirayu Sanghvi , Zeel Shah , MANJUNATHA N , Ankesh Kedia , Amogh R Bagur , Arpitha Kumthimath , Saurav Kumar Gupta , Vineeth P , Ujwal K C , Muqtadir Omer Qureshi , Anagha P , Ishank Sharma , Andrew Abishek A , Sanketh C S (1MS17IS102) , S Shreekumar , Bhushan G Y , 
+
+
+
+######## 1. Reading from CSV and Performing Git Clone ########
+SUCCESS: Successfully fetched Git Repo of Nimish Bongale
+SUCCESS: Successfully fetched Git Repo of Harshubh Meherishi
+SUCCESS: Successfully fetched Git Repo of R Anurag Pillai
+SUCCESS: Successfully fetched Git Repo of Neralakatte Prajwal Pai
+SUCCESS: Successfully fetched Git Repo of Anmol Kapoor
+SUCCESS: Successfully fetched Git Repo of Anagha P
+SUCCESS: Successfully fetched Git Repo of Andrew Abishek A
+SUCCESS: Successfully fetched Git Repo of Saurav Kumar Gupta
+SUCCESS: Successfully fetched Git Repo of Tilak Singh
+SUCCESS: Successfully fetched Git Repo of Zeel Shah
+SUCCESS: Successfully fetched Git Repo of Rohit P N
+SUCCESS: Successfully fetched Git Repo of Muqtadir Omer Qureshi
+SUCCESS: Successfully fetched Git Repo of Deeksha K P
+SUCCESS: Successfully fetched Git Repo of Tanisha Sabherwal
+SUCCESS: Successfully fetched Git Repo of Sachin RS
+SUCCESS: Successfully fetched Git Repo of Umer Faruk
+SUCCESS: Successfully fetched Git Repo of Chirayu Sanghvi
+SUCCESS: Successfully fetched Git Repo of Aishwarya N
+SUCCESS: Successfully fetched Git Repo of Chethan Ramesh
+SUCCESS: Successfully fetched Git Repo of Sumant Katti
+SUCCESS: Successfully fetched Git Repo of Mahima M A
+SUCCESS: Successfully fetched Git Repo of MANJUNATHA N
+SUCCESS: Successfully fetched Git Repo of Adarsh Biradar
+SUCCESS: Successfully fetched Git Repo of Ankesh Kedia
+SUCCESS: Successfully fetched Git Repo of Fawaz hussain
+SUCCESS: Successfully fetched Git Repo of Khan Saba Khanum Akbar
+SUCCESS: Successfully fetched Git Repo of Amogh R Bagur
+SUCCESS: Successfully fetched Git Repo of Shwetha.T
+SUCCESS: Successfully fetched Git Repo of Ishank Sharma
+SUCCESS: Successfully fetched Git Repo of Akhila N
+SUCCESS: Successfully fetched Git Repo of Arpitha Kumthimath
+SUCCESS: Successfully fetched Git Repo of Soumil Diwan
+SUCCESS: Successfully fetched Git Repo of Ujwal K C
+SUCCESS: Successfully fetched Git Repo of Bhushan G Y
+SUCCESS: Successfully fetched Git Repo of S Shreekumar
+SUCCESS: Successfully fetched Git Repo of Meghana R Bhat
+SUCCESS: Successfully fetched Git Repo of Ahmed Uddin Khalid Syed 
+SUCCESS: Successfully fetched Git Repo of D SAI VISWA SUMANTH
+SUCCESS: Successfully fetched Git Repo of Ritesh Saini
+SUCCESS: Successfully fetched Git Repo of nayan deep
+SUCCESS: Successfully fetched Git Repo of Pooja Lokesh
+SUCCESS: Successfully fetched Git Repo of Varshini S
+SUCCESS: Successfully fetched Git Repo of Vivek S Patil 
+SUCCESS: Successfully fetched Git Repo of Manasa Priya
+SUCCESS: Successfully fetched Git Repo of Vineeth P
+SUCCESS: Successfully fetched Git Repo of Sanketh C S (1MS17IS102)
+SUCCESS: Successfully fetched Git Repo of Kushan Singh
+SUCCESS: Successfully fetched Git Repo of Vibhavari
+SUCCESS: Successfully fetched Git Repo of Sarvottamkumar
+SUCCESS: Successfully fetched Git Repo of Gautam MG
+
+
+######## 2. Checking submission folder format ########
+Students who have submitted correctly:  ['Nimish Bongale', 'Harshubh Meherishi', 'R Anurag Pillai', 'Neralakatte Prajwal Pai', 'Anmol Kapoor', 'Anagha P', 'Andrew Abishek A', 'Saurav Kumar Gupta', 'Tilak Singh', 'Zeel Shah', 'Rohit P N', 'Muqtadir Omer Qureshi', 'Deeksha K P', 'Tanisha Sabherwal', 'Sachin RS', 'Umer Faruk', 'Chirayu Sanghvi', 'Aishwarya N', 'Chethan Ramesh', 'Sumant Katti', 'Mahima M A', 'MANJUNATHA N', 'Adarsh Biradar', 'Ankesh Kedia', 'Fawaz hussain', 'Khan Saba Khanum Akbar', 'Amogh R Bagur', 'Ishank Sharma', 'Akhila N', 'Arpitha Kumthimath', 'Soumil Diwan', 'Ujwal K C', 'Bhushan G Y', 'S Shreekumar', 'Meghana R Bhat', 'Ahmed Uddin Khalid Syed ', 'D SAI VISWA SUMANTH', 'Ritesh Saini', 'nayan deep', 'Pooja Lokesh', 'Varshini S', 'Manasa Priya', 'Vineeth P', 'Sanketh C S (1MS17IS102)', 'Kushan Singh', 'Vibhavari', 'Gautam MG']
+
+Student who have NOT submitted correctly: 
+
+{'Sarvottamkumar': 'Incorrect Assignment directory structure. Please name the '
+                   'directory Assignment_<assignmentName> format',
+ 'Shwetha.T': 'Incorrect Assignment directory structure. Please name the '
+              'directory Assignment_<assignmentName> format',
+ 'Vivek S Patil ': 'Incorrect Assignment directory structure. Please name the '
+                   'directory Assignment_<assignmentName> format'}

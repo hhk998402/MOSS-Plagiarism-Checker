@@ -1,0 +1,42 @@
+#### 50% CODE PLAGIARISM REPORT GENERATION - Student who have not copied ####
+
+1. Harshubh_Meherishi
+2. Anagha_P
+3. Andrew_Abishek_A
+4. Saurav_Kumar_Gupta
+5. Tilak_Singh
+6. Zeel_Shah
+7. Rohit_P_N
+8. Deeksha_K_P
+9. Sachin_RS
+10. Umer_Faruk
+11. Aishwarya_N
+12. Chethan_Ramesh
+13. Mahima_M_A
+14. Adarsh_Biradar
+15. Fawaz_hussain
+16. Akhila_N
+17. Ujwal_K_C
+18. Bhushan_G_Y
+19. Meghana_R_Bhat
+20. D_SAI_VISWA_SUMANTH
+21. nayan_deep
+22. Pooja_Lokesh
+23. Varshini_S
+24. Kushan_Singh
+
+
+Total Number of Submissions with NO issues = 47
+Total Number of Submissions with issues = 3
+{'Sarvottamkumar': 'Incorrect Assignment directory structure. Please name the '
+                   'directory Assignment_<assignmentName> format',
+ 'Shwetha.T': 'Incorrect Assignment directory structure. Please name the '
+              'directory Assignment_<assignmentName> format',
+ 'Vivek S Patil ': 'Incorrect Assignment directory structure. Please name the '
+                   'directory Assignment_<assignmentName> format'}
+
+Total number of students who have NOT COPIED at 50% threshold percentage = 24
+
+Total number of students who have plagiarism issues 50% threshold percentage = 23
+
+Saved Excel sheets to PlagiarismReports directory
