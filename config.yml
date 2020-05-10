@@ -1,0 +1,6 @@
+directory_names:
+  git_repos_save_folder: Machine_Learning_Git_Submissions
+  save_reports_to: PlagiarismReports
+pickle_files:
+  folder_mapper: folderMapper.pkl
+  incorrect_submissions: incorrectFormatSubmission.pkl

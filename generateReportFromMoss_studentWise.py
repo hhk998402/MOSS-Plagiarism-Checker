@@ -9,6 +9,11 @@ import os
 import shutil
 from pprint import pprint
 
+import yaml
+
+with open("config.yml", "r") as ymlfile:
+    cfg = yaml.load(ymlfile, Loader=yaml.FullLoader)
+
 import sys
 sys.stdout = open('LOGS - Student Wise Report Generation.txt', 'w')
 
@@ -19,7 +24,7 @@ reportURL = "http://moss.stanford.edu/results/2/363941784921"
 thresholdPercentage = 50
 
 #Create directory to store Plagiarism Reports
-plagiarismReportsFolder = Path("PlagiarismReports")
+plagiarismReportsFolder = Path(cfg["directory_names"]["save_reports_to"])
 if(not plagiarismReportsFolder.exists()):
     Path(plagiarismReportsFolder).mkdir(parents=True, exist_ok=True)
 
@@ -29,7 +34,7 @@ def deleteAllFiles(directory):
         if filePath.exists() and filePath.is_file():
             filePath.unlink()
 
-deleteAllFiles("PlagiarismReports")
+deleteAllFiles(cfg["directory_names"]["save_reports_to"])
 
 print("#### " + str(thresholdPercentage) + "% CODE PLAGIARISM REPORT GENERATION - Student who have not copied ####\n")
 totalNumNotCopied = 0
@@ -93,10 +98,10 @@ def prepareReport(table, studentName, sheet):
         print(str(totalNumNotCopied) + ". " + studentName)
 
 # Fetching pickled dictionary with student names
-with open('incorrectFormatSubmission.pkl', 'rb') as f:
+with open(cfg["pickle_files"]["incorrect_submissions"], 'rb') as f:
     incorrectFormatSubmission = pickle.load(f)
 
-with open('folderMapper.pkl', 'rb') as f:
+with open(cfg["pickle_files"]["folder_mapper"], 'rb') as f:
     folderMapper = pickle.load(f)
     studentNames = [x.replace(' ','_') for x in folderMapper.keys()]
 
@@ -112,7 +117,7 @@ for studentName in studentNames:
     sheet = wb.add_sheet(studentName)
     prepareReport(table, studentName, sheet)
     if(len(sheet._Worksheet__rows)>1):
-        wb.save(str(Path("PlagiarismReports", studentName)) + ".xls")
+        wb.save(str(Path(cfg["directory_names"]["save_reports_to"], studentName)) + ".xls")
         count2 += 1
     count += 1
 
@@ -121,4 +126,4 @@ print("Total Number of Submissions with issues = " + str(len(incorrectFormatSubm
 pprint(incorrectFormatSubmission)
 print("\nTotal number of students who have NOT COPIED at " + str(thresholdPercentage) + "% threshold percentage = " + str(totalNumNotCopied))
 print("\nTotal number of students who have plagiarism issues " + str(thresholdPercentage) + "% threshold percentage = " + str(len(studentNames)- totalNumNotCopied))
-print("\nSaved Excel sheets to PlagiarismReports directory")
+print("\nSaved Excel sheets to " + cfg["directory_names"]["save_reports_to"] + " directory")
