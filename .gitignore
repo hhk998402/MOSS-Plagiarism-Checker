@@ -4,6 +4,9 @@ PlagiarismReports/
 Machine_Learning_Git_Submissions/
 *.pkl
 msrit-moss-python/
+LOGS*.txt
+*.xls
+*.csv
 
 # Virtualenv
 # http://iamzed.com/2009/05/07/a-primer-on-virtualenv/

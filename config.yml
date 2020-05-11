@@ -1,6 +1,20 @@
 directory_names:
-  git_repos_save_folder: Machine_Learning_Git_Submissions
-  save_reports_to: PlagiarismReports
+  git_repos_save_folder: "Machine_Learning_Git_Submissions"
+  save_reports_to: "PlagiarismReports"
 pickle_files:
-  folder_mapper: folderMapper.pkl
-  incorrect_submissions: incorrectFormatSubmission.pkl
+  folder_mapper: "folderMapper.pkl"
+  incorrect_submissions: "incorrectFormatSubmission.pkl"
+  moss_report_url: "mossReportUrl.pkl"
+log_file_names:
+  fetch_git_repos: "LOGS - Fetching students' Git Repos.txt"
+  check_moss_plagiarism: "LOGS - Sending files to MOSS for Plagiarism Check.txt"
+  student_wise_report: "LOGS - Student Wise Report Generation.txt"
+  consolidated_report: "LOGS - Consolidated Report Generation.txt"
+#ONLY EDIT THESE ENTRIES
+assignment_details:
+  name_of_assignment: "Assignment_MLP" #Always name in format Assignment_<nameOfAssignment>
+  form_responses_csv: "ML GitHub Link (Responses) - Form Responses 1.csv"
+  language: "python"
+plagiarism_report:
+  threshold_percentage: 50
+  consolidated_report_name: "ConsolidatedReport_Assignment_MLP.xls"

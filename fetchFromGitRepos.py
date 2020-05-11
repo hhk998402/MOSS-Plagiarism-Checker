@@ -1,3 +1,8 @@
+import yaml
+
+with open("config.yml", "r") as ymlfile:
+    cfg = yaml.load(ymlfile, Loader=yaml.FullLoader)
+
 import git
 import pandas as pd
 from pathlib import Path
@@ -7,16 +12,21 @@ from os.path import isfile, join
 from pprint import pprint
 import string
 import pickle
-
 import sys
-sys.stdout = open('MOSS-Script-Logs.txt', 'w')
 
-####### Data you must fill in ##########
-csvFileName = "ML GitHub Link (Responses) - Form Responses 1.csv"
-assignmentToBeGraded = "Assignment_MLP" #This will always be of the form Assignment_<nameOfAssignment>
+#Fetch necessary data from config file
+fetchGitRepoLogFile = cfg["log_file_names"]["fetch_git_repos"]
+assignmentToBeGraded = cfg["assignment_details"]["name_of_assignment"]
+csvFileName = cfg["assignment_details"]["form_responses_csv"]
+gitFetchReposIntoDirectoryName = cfg["directory_names"]["git_repos_save_folder"]
+studentToFolderMapperPickleFile = cfg["pickle_files"]["folder_mapper"]
+incorrectSubmissionsPickleFile = cfg["pickle_files"]["incorrect_submissions"]
+
+#Specify log file to write to
+sys.stdout = open(fetchGitRepoLogFile, 'w')
 
 #Create directory to clone git repos into
-gitReposFolder = Path("Machine_Learning_Git_Submissions")
+gitReposFolder = Path(gitFetchReposIntoDirectoryName)
 if(not gitReposFolder.exists()):
     Path(gitReposFolder).mkdir(parents=True, exist_ok=True)
 
@@ -40,7 +50,7 @@ def deleteAllFiles(directory):
             shutil.rmtree(dirpath)
     print("\n")
 
-deleteAllFiles("Machine_Learning_Git_Submissions")
+deleteAllFiles(gitFetchReposIntoDirectoryName)
 
 # FETCHING ALL REPOS FROM GITHUB
 print("\n\n######## 1. Reading from CSV and Performing Git Clone ########")
@@ -49,10 +59,10 @@ namesOfFolders = []
 for (idx, row) in gitData.iterrows():
     try:
         row.loc["Full Name"] = convertToFolderName(row.loc["Full Name"])
-        dirpath = Path('Machine_Learning_Git_Submissions', row.loc['Full Name'])
+        dirpath = Path(gitFetchReposIntoDirectoryName, row.loc['Full Name'])
         git.repo.base.Repo.clone_from(
             row.loc["GitHub Link"],
-            "./Machine_Learning_Git_Submissions/" + row.loc['Full Name']
+            str(Path(gitFetchReposIntoDirectoryName, row.loc['Full Name']))
         )
         print("SUCCESS: Successfully fetched Git Repo of", row.loc['Full Name'])
         namesOfFolders.append(row.loc['Full Name'])
@@ -78,7 +88,7 @@ def checkIfPythonFileExists(dir_path):
 print("\n\n######## 2. Checking submission folder format ########")
 correctFormatSubmission = []
 for folder in namesOfFolders:
-    dir_path = Path("Machine_Learning_Git_Submissions", folder)
+    dir_path = Path(gitFetchReposIntoDirectoryName, folder)
     directoryExists = checkIfDirectoryExists(dir_path, assignmentToBeGraded)
     if(directoryExists):
         if(checkIfPythonFileExists(Path(dir_path, directoryExists))):
@@ -93,8 +103,8 @@ print("Students who have submitted correctly: ", correctFormatSubmission)
 print("\nStudent who have NOT submitted correctly: \n")
 pprint(incorrectFormatSubmission)
 
-with open('incorrectFormatSubmission.pkl', 'wb') as f:
+with open(incorrectSubmissionsPickleFile, 'wb') as f:
     pickle.dump(incorrectFormatSubmission, f)
 
-with open('folderMapper.pkl', 'wb') as f:
+with open(studentToFolderMapperPickleFile, 'wb') as f:
     pickle.dump(folderMapper, f)

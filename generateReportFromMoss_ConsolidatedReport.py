@@ -6,13 +6,23 @@ import xlwt
 from xlwt import Workbook
 from pathlib import Path
 
-import sys
-sys.stdout = open('LOGS - Consolidated Report Generation.txt', 'w')
+import yaml
+with open("config.yml", "r") as ymlfile:
+    cfg = yaml.load(ymlfile, Loader=yaml.FullLoader)
 
-# ####### Data you must fill in ##########
-# reportURL = "http://moss.stanford.edu/results/3/2475779986448/"
-# reportURL = "http://moss.stanford.edu/results/9/9592813757221/"
-reportURL = "http://moss.stanford.edu/results/2/363941784921"
+#Fetch necessary data from config file
+studentWiseReportGenerationLogFile = cfg["log_file_names"]["consolidated_report"]
+mossReportUrlPickleFile = cfg["pickle_files"]["moss_report_url"]
+studentToFolderMapperPickleFile = cfg["pickle_files"]["folder_mapper"]
+consolidatedReportName = cfg["plagiarism_report"]["consolidated_report_name"]
+
+import sys
+sys.stdout = open(studentWiseReportGenerationLogFile, 'w')
+
+# Fetch pickled reportURL from MOSS
+# reportURL = "http://moss.stanford.edu/results/2/363941784921"
+with open(mossReportUrlPickleFile, 'rb') as f:
+    reportURL = pickle.load(f)
 
 print("#### CONSOLIDATED CODE PLAGIARISM REPORT GENERATION ####\n")
 
@@ -79,7 +89,7 @@ def prepareReport(table, studentName):
 
 
 # Fetching pickled dictionary with student names
-with open('folderMapper.pkl', 'rb') as f:
+with open(studentToFolderMapperPickleFile, 'rb') as f:
     folderMapper = pickle.load(f)
     studentNames = [x.replace(' ','_') for x in folderMapper.keys()]
     print("Total number of Submissions = " + str(len(studentNames)))
@@ -94,5 +104,5 @@ print("\n\nStudents who have not copied at all: ")
 for studentName in studentNames:
     sheet = prepareReport(table, studentName)
 
-wb.save('ConsolidatedReport_Assignment_MLP.xls')
-print("\n\nSaved data to following excel file in root directory: " + 'ConsolidatedReport_Assignment_MLP.xls')
+wb.save(consolidatedReportName)
+print("\n\nSaved data to following excel file in root directory: " + consolidatedReportName)

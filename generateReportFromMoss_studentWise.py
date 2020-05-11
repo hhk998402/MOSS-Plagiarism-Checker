@@ -14,19 +14,26 @@ import yaml
 with open("config.yml", "r") as ymlfile:
     cfg = yaml.load(ymlfile, Loader=yaml.FullLoader)
 
-import sys
-sys.stdout = open('LOGS - Student Wise Report Generation.txt', 'w')
+# Fetch necessary data from config file
+studentWiseReportGenerationLogFile = cfg["log_file_names"]["student_wise_report"]
+mossReportUrlPickleFile = cfg["pickle_files"]["moss_report_url"]
+thresholdPercentage = cfg["plagiarism_report"]["threshold_percentage"]
+plagiarismReportsFolderName = cfg["directory_names"]["save_reports_to"]
+studentToFolderMapperPickleFile = cfg["pickle_files"]["folder_mapper"]
+incorrectSubmissionsPickleFile = cfg["pickle_files"]["incorrect_submissions"]
 
-# ####### Data you must fill in ##########
-# reportURL = "http://moss.stanford.edu/results/3/2475779986448/"
-# reportURL = "http://moss.stanford.edu/results/9/9592813757221/"
-reportURL = "http://moss.stanford.edu/results/2/363941784921"
-thresholdPercentage = 50
+import sys
+sys.stdout = open(studentWiseReportGenerationLogFile, 'w')
+
+# Fetch pickled reportURL from MOSS
+# reportURL = "http://moss.stanford.edu/results/2/363941784921"
+with open(mossReportUrlPickleFile, 'rb') as f:
+    reportURL = pickle.load(f)
 
 #Create directory to store Plagiarism Reports
-plagiarismReportsFolder = Path(cfg["directory_names"]["save_reports_to"])
-if(not plagiarismReportsFolder.exists()):
-    Path(plagiarismReportsFolder).mkdir(parents=True, exist_ok=True)
+plagiarismReportsFolderPath = Path(plagiarismReportsFolderName)
+if(not plagiarismReportsFolderPath.exists()):
+    Path(plagiarismReportsFolderPath).mkdir(parents=True, exist_ok=True)
 
 def deleteAllFiles(directory):
     for file in os.listdir(directory):
@@ -34,7 +41,7 @@ def deleteAllFiles(directory):
         if filePath.exists() and filePath.is_file():
             filePath.unlink()
 
-deleteAllFiles(cfg["directory_names"]["save_reports_to"])
+deleteAllFiles(plagiarismReportsFolderPath)
 
 print("#### " + str(thresholdPercentage) + "% CODE PLAGIARISM REPORT GENERATION - Student who have not copied ####\n")
 totalNumNotCopied = 0
@@ -98,32 +105,28 @@ def prepareReport(table, studentName, sheet):
         print(str(totalNumNotCopied) + ". " + studentName)
 
 # Fetching pickled dictionary with student names
-with open(cfg["pickle_files"]["incorrect_submissions"], 'rb') as f:
+with open(incorrectSubmissionsPickleFile, 'rb') as f:
     incorrectFormatSubmission = pickle.load(f)
 
-with open(cfg["pickle_files"]["folder_mapper"], 'rb') as f:
+with open(studentToFolderMapperPickleFile, 'rb') as f:
     folderMapper = pickle.load(f)
     studentNames = [x.replace(' ','_') for x in folderMapper.keys()]
 
+#PARSING MOSS REPORT URL
 resp = req.get(reportURL)
-
 soup = BeautifulSoup(resp.text, 'lxml')
 table = soup.find('table')
 
-count = 0
-count2 = 0
 for studentName in studentNames:
     wb = Workbook()
     sheet = wb.add_sheet(studentName)
     prepareReport(table, studentName, sheet)
     if(len(sheet._Worksheet__rows)>1):
-        wb.save(str(Path(cfg["directory_names"]["save_reports_to"], studentName)) + ".xls")
-        count2 += 1
-    count += 1
+        wb.save(str(Path(plagiarismReportsFolderPath, studentName)) + ".xls")
 
 print("\n\nTotal Number of Submissions with NO issues = " + str(len(studentNames)))
 print("Total Number of Submissions with issues = " + str(len(incorrectFormatSubmission.keys())))
 pprint(incorrectFormatSubmission)
 print("\nTotal number of students who have NOT COPIED at " + str(thresholdPercentage) + "% threshold percentage = " + str(totalNumNotCopied))
 print("\nTotal number of students who have plagiarism issues " + str(thresholdPercentage) + "% threshold percentage = " + str(len(studentNames)- totalNumNotCopied))
-print("\nSaved Excel sheets to " + cfg["directory_names"]["save_reports_to"] + " directory")
+print("\nSaved Excel sheets to " + plagiarismReportsFolderName + " directory")

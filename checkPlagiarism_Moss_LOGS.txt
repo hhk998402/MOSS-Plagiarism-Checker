@@ -45,3 +45,4 @@ Folder accessed for Sanketh C S (1MS17IS102) is Machine_Learning_Git_Submissions
 Folder accessed for Kushan Singh is Machine_Learning_Git_Submissions/Kushan Singh/AssignmentMLP
 Folder accessed for Vibhavari is Machine_Learning_Git_Submissions/Vibhavari/Assignment-MLP
 Folder accessed for Gautam MG is Machine_Learning_Git_Submissions/Gautam MG/Assignment_MLP
+Report Url: http://moss.stanford.edu/results/9/1013603863279
