@@ -12,7 +12,7 @@ idna==2.9
 ipython==7.14.0
 ipython-genutils==0.2.0
 jedi==0.17.0
-lxml==4.5.0
+lxml==4.6.2
 mosspy==1.0.8
 mossum @ git+https://github.com/hjalti/mossum@2a22ef644c7f87e391b501023cd8b79d875a5eec
 numpy==1.18.4
