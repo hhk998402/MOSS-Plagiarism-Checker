@@ -15,7 +15,7 @@ jedi==0.17.0
 lxml==4.5.0
 mosspy==1.0.8
 mossum @ git+https://github.com/hjalti/mossum@2a22ef644c7f87e391b501023cd8b79d875a5eec
-numpy==1.18.4
+numpy==1.22.0
 pandas==1.0.3
 parso==0.7.0
 pexpect==4.8.0
